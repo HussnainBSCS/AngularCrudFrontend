@@ -1,0 +1,47 @@
+<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+  <mat-form-field appearance="fill">
+    <input matInput name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput type="text" name="name" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Full name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput type="text" name="position" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="Position">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput type="text" name="office" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Office">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput   type="text" name="salary" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary">
+  </mat-form-field>
+    <button mat-raised-button type="submit" style="background-color: rgb(16, 173, 16);color: white;margin-right: 10px;">Submit</button>
+    <button mat-raised-button type="button" (click)="resetForm(employeeForm)" color="warn">Reset</button>
+  </form>
+  <mat-divider></mat-divider>
+
+  <!-- table -->
+  <div class="container">
+    <h2>User Data</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="data-width">Name</div>
+        <div class="data-width">Position</div>
+        <div class="data-width">Office</div>
+        <div class="data-width">Salary</div>
+        <div class="data-width">Actions</div>
+
+      </li>
+      <li class="table-row" *ngFor="let emp of employeeService.employees">
+        <div class="data-width" >{{emp.name}}</div>
+        <div class="data-width">{{emp.position}}</div>
+        <div class="data-width">{{emp.office}}</div>
+        <div class="data-width">{{emp.salary}}</div>
+        <div class="btns">
+          <button mat-raised-button (click)="onEdit(emp)"  style="background-color: rgb(16, 173, 16);color: white;margin-right: 10px;">Edit</button>
+          <button mat-raised-button (click)="onDelete(emp._id,employeeForm)" color="warn">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
